@@ -21,10 +21,9 @@ const Country = ({ filteredCountries }) => {
             })
     }, []);
 
-
-    const onShowWeather = () => {
-        setShowWeather(!showWeather);
-    }
+    // const onShowWeather = () => {
+    //     setShowWeather(!showWeather);
+    // }
 
     // const imgWeather = weather.weather.map(desc => desc.icon)
     return (
@@ -38,23 +37,23 @@ const Country = ({ filteredCountries }) => {
             </ul>
             <br></br>
             <img src={filteredCountries[0].flags.png} alt="country Flag" width="120" height="100"></img>
-            <div>
+            {weather ? <div>
 
                 <h1>Show weather in {weather.name}</h1>
 
-                {showWeather ? <div>
-                    {/* {console.log("state of weather",showWeather)} */}
-                    <h3>Wind {weather.wind.speed}m/s</h3>
-                    <h3>Temperature {Math.floor((weather.main.temp) / 10)} Celcius</h3>
-                    <img src={`http://openweathermap.org/img/wn/${weather.weather.map(desc => desc.icon)}@2x.png`} alt="weather image" width="100" height="100"></img>
-                    <h3>{weather.weather.map(desc => desc.description)}</h3>
-                    <button onClick={onShowWeather}>Hide</button>
-                </div>
-                    : <button onClick={onShowWeather}>Show</button>}
+                {/* {showWeather ? <div> */}
+                {/* {console.log("state of weather",showWeather)} */}
+                <h3>Wind {weather.wind?.speed}m/s</h3>
+                <h3>Temperature {Math.floor((weather.main?.temp) / 10)} Celcius</h3>
+                <img src={`http://openweathermap.org/img/wn/${weather.weather?.map(desc => desc.icon)}@2x.png`} alt="weather image" width="100" height="100"></img>
+                <h3>{weather.weather?.map(desc => desc.description)}</h3>
+                {/* <button onClick={onShowWeather}>Hide</button> */}
+                {/* </div>
+    : <button onClick={onShowWeather}>Show</button>} */}
                 {/* <h3>Wind {windSpeed.speed}m/s</h3> */}
                 {/* <div>temperature {weather.main.temp}</div> */}
 
-            </div>
+            </div> : null}
 
         </div>
     )

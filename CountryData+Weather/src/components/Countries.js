@@ -10,7 +10,6 @@ const Countries = ({ filteredCountries, onShowCountry }) => {
         setShow(!show);
     }
 
-
     if (show) {
         // console.log(filteredCountries);
         return (
