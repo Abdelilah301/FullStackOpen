@@ -67,19 +67,22 @@ const App = () => {
     const str = `\\b${newName}\\b`;
     const wordMatch = str.trim().split(" ").join('');
     // console.log(wordMatch);
-    const regex = new RegExp(wordMatch);
-    const result = persons.filter(person => regex.test(person.name.split(" ").join('')));
+    const regex = new RegExp(wordMatch.toLowerCase());
+    const result = persons.filter(person => regex.test(person.name.toLowerCase().trim().split(" ").join('')));
+    //console.log(result.find(p => p.name.toLowerCase() === newName.toLowerCase()));
     //console.log(persons[1].name.split(" ").join(''));
+
     if (result.length > 0) {
-      const person = persons.find(p => p.name === newName)
+      const person = persons.find(p => p.name.toLowerCase() === newName.toLowerCase())
+     // console.log(person)
       const confirmAlert = window.confirm(
         `${newName} is already exist do you want to replace the old number?`
       )
       if (confirmAlert) {
         const id = person.id;
         const replacePerson = { ...person, number: newNumber }
-        console.log(person);
-        console.log(id);
+      //  console.log(person);
+      //  console.log(id);
         return personService
           .update(id, replacePerson)
           .then(returnedPerson => {
